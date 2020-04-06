@@ -14,14 +14,14 @@ class SetTest extends TestCase
 	{
 		$set = Set::from([1, 1, 2, 2, 3, 3]);
 
-		$this->assertEquals($set->toArray(), [1, 2, 3]);
-		$this->assertEquals($set->len(), 3);
-		$this->assertEquals($set->isEmpty(), false);
-		$this->assertEquals($set->nonEmpty(), true);
-		$this->assertEquals($set->in(1), true);
-		$this->assertEquals($set->in(4), false);
-		$this->assertEquals($set->notIn(1), false);
-		$this->assertEquals($set->notIn(4), true);
+		$this->assertSame($set->toArray(), [1, 2, 3]);
+		$this->assertSame($set->len(), 3);
+		$this->assertSame($set->isEmpty(), false);
+		$this->assertSame($set->nonEmpty(), true);
+		$this->assertSame($set->in(1), true);
+		$this->assertSame($set->in(4), false);
+		$this->assertSame($set->notIn(1), false);
+		$this->assertSame($set->notIn(4), true);
 	}
 
 	public function testMap()
@@ -32,7 +32,7 @@ class SetTest extends TestCase
 			return $s * 2;
 		})->toArray();
 
-		$this->assertEquals($result, [2, 4, 6]);
+		$this->assertSame($result, [2, 4, 6]);
 	}
 
 	public function testFilter()
@@ -43,7 +43,7 @@ class SetTest extends TestCase
 			return $s === 2;
 		})->toArray();
 
-		$this->assertEquals($result, [2]);
+		$this->assertSame($result, [2]);
 	}
 
 	public function testFoldLeft()
@@ -54,7 +54,7 @@ class SetTest extends TestCase
 			return $acc + $item;
 		});
 
-		$this->assertEquals($result, 6);
+		$this->assertSame($result, 6);
 	}
 
 	public function testUnion()
@@ -64,7 +64,7 @@ class SetTest extends TestCase
 
 		$result = $set->union($that)->toArray();
 
-		$this->assertEquals($result, [1, 2, 3, 4, 5]);
+		$this->assertSame($result, [1, 2, 3, 4, 5]);
 	}
 
 	public function testIntersection()
@@ -74,7 +74,7 @@ class SetTest extends TestCase
 
 		$result = $set->intersection($that)->toArray();
 
-		$this->assertEquals($result, [2, 3, 4]);
+		$this->assertSame($result, [2, 3, 4]);
 	}
 
 	public function testDiff()
@@ -84,7 +84,7 @@ class SetTest extends TestCase
 
 		$result = $set->diff($that)->toArray();
 
-		$this->assertEquals($result, [1]);
+		$this->assertSame($result, [1]);
 	}
 
 	public function testSymmetricDiff()
@@ -94,7 +94,7 @@ class SetTest extends TestCase
 
 		$result = $set->symmetricDiff($that)->toArray();
 
-		$this->assertEquals($result, [1, 5]);
+		$this->assertSame($result, [1, 5]);
 	}
 
 	public function testIsSubset()
